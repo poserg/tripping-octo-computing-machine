@@ -1,5 +1,2 @@
-#!/usr/bin/env python
-
-while True:
-	raw_input()
-	print "Hello world!"
+raw_input()
+print "Hello world!"
