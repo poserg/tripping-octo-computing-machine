@@ -23,5 +23,5 @@ for i in exs:
     result.append(getFrac(int(i[0]), int(i[1])))
     
 for i in result:
-    print i
+    print round(i, 6)
     
