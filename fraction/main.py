@@ -1,6 +1,6 @@
 accuracy = 6
 
-precision = 10^(-(accuracy + 2))
+precision = 0.00000001
 exs = []
 
 count = raw_input()
