@@ -9,48 +9,42 @@ s = 0
 x = 0
 y = 0
 d = ""
-# for i in range(1,n):
-#     t = 0
-#     if (i > m):
-#         k = m
-#     else:
-#         k = i
-#     for j in range(0,k):
-#         t += matrix[i][j]
-#     if t > s:
-#         s = t
-#         x = i + 1
-#         y = k + 1
-#         d = "UP"
 
-x_c = []
-for i in range(m):
-    x_c.append(0)
-x_c = x_c + range(n)
-y_c = []
-y_c = range(m)
-for i in range(n):
-    y_c.append(0)
+def inc(t):
+    return t + 1
 
-s = 0
-mx = 0
-my = 0
-d = ""
-for i in range(len(x_c)):
-    x = x_c[i]
-    y = y_c[i]
-    t = 0
-    r = min(n - x, m - y)
-    if r <=1:
-        break
-    for j in range(r):
-        t += matrix[x + j][y + j]
-    if (t > s):
-        s = t
-        mx = x
-        my = y
-        d = "DOWN"
+def dec(t):
+    return t - 1
+
+def calc(x_c, y_c, s, mx, my, direction, condition, next_x, next_y):
+    for i in range(len(x_c)):
+        x = x_c[i]
+        y = y_c[i]
+        t = 0
+        x_t, y_t = x, y
+        while condition(x_t, y_t):
+            t += matrix[y_t][x_t]
+            x_t = next_x(x_t)
+            y_t = next_y(y_t)
+        if (t > s):
+            s = t
+            mx = x + 1
+            my = y + 1
+            d = direction
+    return s, mx, my, d
+
+x_c = [0 for x in range(n - 2)]
+x_c = x_c + range(m - 1)
+y_c = range(n - 2, -1, -1)
+y_c += [0 for x in range(m - 2)]
+
+s, mx, my, d = calc(x_c, y_c, 0, 0, 0, "DOWN", (lambda x, y: x < m and y < n), inc, inc)
         
-print s, x, y, d
+y_c = range(1, n)
+y_c += [n - 1 for x in range(m-2)]
+
+s, mx, my, d = calc(x_c, y_c, s, mx, my, "UP", (lambda x, y: x < m and y >=0), inc, dec)
+
+print my, mx, d, s
 
         
