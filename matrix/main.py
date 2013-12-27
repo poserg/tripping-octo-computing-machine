@@ -3,7 +3,8 @@ n, m = map(int, raw_input().split(" "))
 matrix = []
 for i in range(n):
     matrix.append(map(int, raw_input().split(" ")))
-    
+
+raw_input()
     
 s = 0
 x = 0

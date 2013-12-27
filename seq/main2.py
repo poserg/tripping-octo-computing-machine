@@ -2,19 +2,21 @@ n = int(raw_input())
 t = map(int, raw_input().split(" "))
 
 result = []
-chet = 0
-noll = 0
+chet = {}
+chet_count = 0
+noll = []
 for i in range(n):
     if (t[i] == 0):
-        result = list(map(lambda x: x + 1, result))
-        result.append(chet)
-        chet = chet + 1
+        noll.append(i)
+        chet[i] = chet_count
+        chet_count += 1
     elif (t[i] % 2 == 0):
-        chet = chet + 1
+        chet_count += 1
         
 s = ""
-for i in result[:-1]:
-    s += str(i) + " "
-s += str(result[-1])
+n = len(noll)
+for i in range(n):
+    t = chet[noll[i]] + n - i - 1
+    s += str(t) + " "
 
 print s
