@@ -19,4 +19,4 @@ for i in range(n):
     t = chet[noll[i]] + n - i - 1
     s += str(t) + " "
 
-print s
+print s[:-1]
