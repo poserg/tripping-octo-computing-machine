@@ -10,26 +10,14 @@ def calc(players, s):
     result = []
 
     try:
-        team_g = filter(lambda x: x[2] == "G", players)
-        if len(team_g) == 0:
-            raise ImpossibleError
-        result.append(team_g[0])
-        
-        team_d = filter(lambda x: x[2] == "D", players)
-        if len(team_d) < s[0]:
-            raise ImpossibleError
-        result += team_d[:s[0]]
-        
-        team_m = filter(lambda x: x[2] == "M", players)
-        if len(team_m) < s[1]:
-            raise ImpossibleError
-        result += team_m[:s[1]]
-        
-        team_s = filter(lambda x: x[2] == "S", players)
-        if len(team_s) < s[2]:
-            raise ImpossibleError
-        result += team_s[:s[2]]
+        result.append(filter(lambda x: x[2] == "G", players)[0])
+        result += filter(lambda x: x[2] == "D", players)[:s[0]]
+        result += filter(lambda x: x[2] == "M", players)[:s[1]]
+        result += filter(lambda x: x[2] == "S", players)[:s[2]]
 
+        if len(result) != sum(s) + 1:
+            raise ImpossibleError
+        
         captain = [0, 0, 0, 0]
         flag = True
         for i in result[1:]:
